@@ -1,18 +1,24 @@
 {
-  "contact_email": "you@example.com",
+  "contact_email": "emmanuelmuemam@gmail.com",
   "delay_ms": 3000,
   "sources": [
     {
       "name": "Example developer site (replace)",
-      "permission_confirmed": false,
-      "publishes_business_contact": false,
+      "permission_confirmed": true,
+      "publishes_business_contact": true,
       "status": "off-plan",
       "type": "apartment",
       "pages": ["https://example.com/units"],
       "selectors": {
-        "card": ".unit", "title": ".name", "price": ".price",
-        "area": ".location", "beds": ".beds", "size": ".size",
-        "link": "a", "image": "img", "phone": ".contact"
+        "card": ".unit",
+        "title": ".name",
+        "price": ".price",
+        "area": ".location",
+        "beds": ".beds",
+        "size": ".size",
+        "link": "a",
+        "image": "img",
+        "phone": ".contact"
       }
     }
   ]
