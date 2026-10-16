@@ -1,0 +1,15 @@
+{
+  "name": "property-desk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.34.0",
+    "cheerio": "^1.0.0",
+    "robots-parser": "^3.0.1"
+  }
+}

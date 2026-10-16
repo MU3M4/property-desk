@@ -1,0 +1,6 @@
+{
+  "crons": [{ "path": "/api/collect", "schedule": "0 3 * * *" }],
+  "functions": {
+    "api/collect.js": { "maxDuration": 60, "includeFiles": "sources.json" }
+  }
+}

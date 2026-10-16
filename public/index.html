@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nairobi Property Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f3;--panel:#fff;--ink:#14232b;--mute:#5b6b73;--line:#cfd9dc;--az:#1d6f95;--azd:#0f4a66;--warn:#b7791f;--bad:#b3261e;--ok:#1f7a4d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1f;--panel:#16252c;--ink:#e6eef1;--mute:#9db0b8;--line:#2b3f48;--az:#5fb3d9;--azd:#8fd0ec;--warn:#e0a84a;--bad:#f08a82;--ok:#62c795}}
+:root[data-theme="dark"]{--bg:#0f1a1f;--panel:#16252c;--ink:#e6eef1;--mute:#9db0b8;--line:#2b3f48;--az:#5fb3d9;--azd:#8fd0ec;--warn:#e0a84a;--bad:#f08a82;--ok:#62c795}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Source Sans 3",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+h1{font:700 clamp(28px,5vw,44px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 6px;letter-spacing:-.02em}
+h2{font:700 20px "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 10px}
+.sub{color:var(--mute);max-width:62ch;margin:0 0 18px}
+nav{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin-bottom:18px}
+nav button{background:none;border:0;padding:10px 14px;font:600 15px inherit;color:var(--mute);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+nav button[aria-selected=true]{color:var(--az);border-color:var(--az)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--az);outline-offset:2px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+label{display:block;font-size:14px;color:var(--mute)}
+input,select,textarea{width:100%;margin-top:3px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{background:var(--az);color:#fff;border:0;border-radius:6px;padding:9px 16px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+:root[data-theme="dark"] .btn{color:#06232f}
+.btn.ghost{background:none;color:var(--az);border:1px solid var(--az)}
+.btn.sm{padding:4px 10px;margin:0;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--az);border-radius:8px;padding:14px}
+.card.off{border-left-color:var(--warn)}
+.card h3{margin:0 0 4px;font:700 17px "Bricolage Grotesque",system-ui,sans-serif}
+.price{font:700 22px "Bricolage Grotesque",system-ui,sans-serif;color:var(--azd)}
+.meta{color:var(--mute);font-size:14px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--line);margin-right:4px}
+.stale{color:var(--warn);font-weight:600}.hot{color:var(--bad);font-weight:600}.warm{color:var(--warn);font-weight:600}.nurt{color:var(--ok);font-weight:600}
+.msg{padding:10px;border-radius:6px;margin-top:10px;font-size:14px}.msg.err{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}.msg.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+.empty{padding:24px;text-align:center;color:var(--mute);border:2px dashed var(--line);border-radius:10px}
+.card img{max-width:100%;border-radius:6px;margin-bottom:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+ul.rules{padding-left:18px}ul.rules li{margin-bottom:6px}
+[hidden]{display:none!important}
+</style></head><body><div class="wrap">
+<h1>Nairobi Property Desk</h1>
+<p class="sub">Your own verified listings, client matching and consent-based leads. It shows only what you enter, with its source and date. It never invents a price, contact or photo.</p>
+<nav role="tablist"><button role="tab" aria-selected="true" data-t="list">Listings</button><button role="tab" aria-selected="false" data-t="match">Match a client</button><button role="tab" aria-selected="false" data-t="leads">Leads</button><button role="tab" aria-selected="false" data-t="rules">Rules</button></nav>
+
+<section id="list">
+<div class="panel"><h2>Add a listing</h2>
+<div class="row" style="margin:0 0 8px"><button class="btn ghost sm" id="azure">Start a Riverside Azure unit</button><span class="meta">Fills the project name and area only. You enter the real price, size and source.</span></div>
+<div class="grid">
+<label>Title<input id="l_title" placeholder="e.g. 2-bedroom, Riverside Azure"></label>
+<label>Status<select id="l_status"><option>off-plan</option><option>ready-sale</option><option>rental</option></select></label>
+<label>Type<select id="l_type"><option>apartment</option><option>house</option><option>office</option><option>retail</option><option>warehouse</option><option>land</option></select></label>
+<label>Area<input id="l_area" placeholder="e.g. Riverside"></label>
+<label>Bedrooms<input id="l_beds" type="number" min="0"></label>
+<label>Price (KES)<input id="l_price" type="number" min="0"></label>
+<label>Size (m²)<input id="l_size" type="number" min="0"></label>
+<label>Developer or agent<input id="l_agent"></label>
+<label>Business phone<input id="l_phone" placeholder="Published for enquiries"></label>
+<label>Source link (required)<input id="l_src" placeholder="https://… or 'developer price list, 13 Oct'"></label>
+<label>Verified on (required)<input id="l_ver" type="date"></label>
+<label>Photo link (optional)<input id="l_img" placeholder="https://… you have permission to use"></label>
+</div>
+<button class="btn" id="l_add">Save listing</button><div id="l_msg"></div></div>
+<div class="panel"><h2>Import collected listings</h2><p class="meta" style="margin:0 0 6px">Paste the listings.json produced by the collector script. Entries without a title, area, source link and date are rejected.</p><textarea id="i_txt" rows="4" placeholder="[ { &quot;title&quot;: &quot;…&quot;, … } ]"></textarea><button class="btn" id="i_go">Import and match</button><button class="btn ghost" id="i_seed" style="margin-left:8px">Load Riverside results found 13 Oct 2026</button><div id="i_msg"></div></div>
+<div class="panel"><div class="grid">
+<label>Filter by status<select id="f_status"><option value="">All</option><option>off-plan</option><option>ready-sale</option><option>rental</option></select></label>
+<label>Filter by area<input id="f_area" placeholder="Area"></label></div></div>
+<div id="l_out" class="cards"></div></section>
+
+<section id="match" hidden><div class="panel"><h2>Client brief</h2><div class="grid">
+<label>Looking for<select id="m_status"><option value="">Any</option><option>off-plan</option><option>ready-sale</option><option>rental</option></select></label>
+<label>Type<select id="m_type"><option value="">Any</option><option>apartment</option><option>house</option><option>office</option><option>retail</option><option>warehouse</option><option>land</option></select></label>
+<label>Area<input id="m_area"></label><label>Bedrooms (at least)<input id="m_beds" type="number" min="0"></label>
+<label>Max budget (KES)<input id="m_budget" type="number" min="0"></label></div>
+<button class="btn" id="m_go">Find matches</button></div><div id="m_out" class="cards"></div></section>
+
+<section id="leads" hidden><div class="panel"><h2>Capture a lead</h2><div class="grid">
+<label>Name<input id="c_name"></label><label>Phone (WhatsApp)<input id="c_phone" placeholder="2547…"></label>
+<label>Interest<select id="c_int"><option>Buy off-plan</option><option>Buy ready</option><option>Rent</option><option>Commercial space</option><option>Invest</option></select></label>
+<label>Budget (KES)<input id="c_bud" type="number" min="0"></label>
+<label>Deposit ready?<select id="c_dep"><option>yes</option><option>no</option></select></label>
+<label>Financing<select id="c_fin"><option>cash</option><option>mortgage</option><option>SACCO</option><option>undecided</option></select></label>
+<label>Timeline<select id="c_time"><option>within 3 months</option><option>3-6 months</option><option>6+ months</option></select></label>
+<label>Based in<select id="c_loc"><option>Kenya</option><option>abroad</option></select></label></div>
+<label style="margin-top:10px;display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="c_cons" style="width:auto;margin-top:5px">The client agreed to be contacted about properties and knows they can ask me to delete their details.</label>
+<button class="btn" id="c_add">Save lead</button><div id="c_msg"></div></div><div id="c_out" class="cards"></div></section>
+
+<section id="rules" hidden><div class="panel"><h2>Built-in rules</h2><ul class="rules">
+<li><b>No source, no listing.</b> Records without a source and verification date are rejected.</li>
+<li><b>Flagged when old.</b> Listings not verified in 30 days show a warning. Re-check price and availability before quoting.</li>
+<li><b>Consent first.</b> A lead cannot be saved without the consent box. Delete removes the lead completely.</li>
+<li><b>Business contacts only.</b> Save phone numbers that agents and developers publish for enquiries.</li>
+<li><b>Photos by link.</b> Use only images you have permission to show.</li>
+<li><b>Honest empties.</b> If nothing matches, the screen says so.</li>
+<li><b>Local storage.</b> Data stays in this browser only and is not shared or backed up. This is a prototype: have an advocate review ODPC registration and privacy notices before real use.</li></ul></div></section>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let L=[],C=[];
+function load(){try{L=JSON.parse(localStorage.getItem('npd_l')||'[]');C=JSON.parse(localStorage.getItem('npd_c')||'[]')}catch(e){L=[];C=[]}}
+function save(){try{localStorage.setItem('npd_l',JSON.stringify(L));localStorage.setItem('npd_c',JSON.stringify(C))}catch(e){}}
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const kes=n=>n?'KES '+Number(n).toLocaleString('en-KE'):'Price not given';
+const age=d=>Math.floor((Date.now()-new Date(d))/864e5);
+function safeUrl(u){return /^https:\/\//i.test(u)?u:''}
+function card(x,del){const a=age(x.ver);const st=a>30?`<span class="stale">Verified ${a} days ago: recheck before quoting</span>`:`Verified ${esc(x.ver)}`;
+const src=safeUrl(x.src)?`<a href="${esc(x.src)}" target="_blank" rel="noopener">source</a>`:esc(x.src);
+return `<div class="card ${x.status==='off-plan'?'off':''}">${safeUrl(x.img)?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:''}<h3>${esc(x.title)}</h3><div class="price">${kes(x.price)}</div><div class="meta"><span class="tag">${esc(x.status)}</span><span class="tag">${esc(x.type)}</span>${esc(x.area)}${x.beds!==''?' · '+esc(x.beds)+' bed':''}${x.size?' · '+esc(x.size)+' m²':''}</div><div class="meta">${esc(x.agent)}${x.phone?' · '+esc(x.phone):''}</div><div class="meta">${st} · ${src}</div>${del?`<div class="row"><button class="btn ghost sm" data-del="${x.id}">Remove</button></div>`:''}</div>`}
+function renderL(){const s=$('f_status').value,a=$('f_area').value.toLowerCase();const r=L.filter(x=>(!s||x.status===s)&&(!a||x.area.toLowerCase().includes(a)));
+$('l_out').innerHTML=r.length?r.map(x=>card(x,1)).join(''):`<div class="empty" style="grid-column:1/-1">${L.length?'No listings match this filter.':'No listings yet. Add your first one above, with its source and verification date.'}</div>`}
+$('azure').onclick=()=>{$('l_title').value='Riverside Azure unit';$('l_status').value='off-plan';$('l_type').value='apartment';$('l_area').value='Riverside';$('l_agent').value='Riverside Azure developer'};
+$('l_add').onclick=()=>{const g=i=>$(i).value.trim();const m=$('l_msg');
+if(!g('l_title')||!g('l_area')){m.innerHTML='<div class="msg err">Add a title and an area.</div>';return}
+if(!g('l_src')||!g('l_ver')){m.innerHTML='<div class="msg err">Rejected: every listing needs a source and a verification date.</div>';return}
+L.push({id:Date.now(),title:g('l_title'),status:g('l_status'),type:g('l_type'),area:g('l_area'),beds:g('l_beds'),price:g('l_price'),size:g('l_size'),agent:g('l_agent'),phone:g('l_phone'),src:g('l_src'),ver:g('l_ver'),img:g('l_img')});
+save();renderL();m.innerHTML='<div class="msg ok">Listing saved.</div>';['l_title','l_beds','l_price','l_size','l_src','l_img'].forEach(i=>$(i).value='')};
+$('l_ver').value=new Date().toISOString().slice(0,10);
+$('l_out').onclick=e=>{const d=e.target.dataset.del;if(d){L=L.filter(x=>x.id!=d);save();renderL()}};
+$('f_status').onchange=$('f_area').oninput=renderL;
+$('m_go').onclick=()=>{const s=$('m_status').value,t=$('m_type').value,a=$('m_area').value.toLowerCase().trim(),b=Number($('m_beds').value)||0,p=Number($('m_budget').value)||0;
+const r=L.filter(x=>(!s||x.status===s)&&(!t||x.type===t)&&(!a||x.area.toLowerCase().includes(a))&&(!b||Number(x.beds||0)>=b)&&(!p||(x.price&&Number(x.price)<=p))).sort((x,y)=>Number(x.price||1e15)-Number(y.price||1e15));
+$('m_out').innerHTML=r.length?r.map(x=>card(x,0)).join(''):'<div class="empty" style="grid-column:1/-1">No listing in your database fits this brief. Widen the budget or area, or add listings from partners.</div>'};
+function score(c){let s=0;if(c.time==='within 3 months')s+=2;else if(c.time==='3-6 months')s+=1;if(c.dep==='yes')s+=1;if(c.fin!=='undecided')s+=1;if(Number(c.bud)>0)s+=1;return s>=4?['Hot','hot']:s>=2?['Warm','warm']:['Nurture','nurt']}
+function renderC(){$('c_out').innerHTML=C.length?C.map(c=>{const[sc,cl]=score(c);const ph=c.phone.replace(/\D/g,'');const wa=ph?`https://wa.me/${ph}?text=${encodeURIComponent('Hello '+c.name+', following up on your property enquiry.')}`:'';
+return `<div class="card"><h3>${esc(c.name)}</h3><div class="meta">${esc(c.intent)} · ${esc(c.bud?kes(c.bud):'no budget given')}</div><div class="meta">${esc(c.fin)} · deposit ${esc(c.dep)} · ${esc(c.time)} · ${esc(c.loc)}</div><div class="meta">Priority: <span class="${cl}">${sc}</span> · consent recorded ${esc(c.on)}</div><div class="row">${wa?`<a class="btn sm" style="text-decoration:none;color:#fff" href="${esc(wa)}" target="_blank" rel="noopener">Open WhatsApp</a>`:''}<button class="btn ghost sm" data-cd="${c.id}">Delete lead</button></div></div>`}).join(''):'<div class="empty" style="grid-column:1/-1">No leads yet. Add one after the client agrees to be contacted.</div>'}
+$('c_add').onclick=()=>{const g=i=>$(i).value.trim();const m=$('c_msg');
+if(!g('c_name')||!g('c_phone')){m.innerHTML='<div class="msg err">Add a name and phone number.</div>';return}
+if(!$('c_cons').checked){m.innerHTML='<div class="msg err">Not saved: tick the consent box once the client agrees to be contacted.</div>';return}
+C.push({id:Date.now(),name:g('c_name'),phone:g('c_phone'),intent:g('c_int'),bud:g('c_bud'),dep:g('c_dep'),fin:g('c_fin'),time:g('c_time'),loc:g('c_loc'),on:new Date().toISOString().slice(0,10)});
+save();renderC();m.innerHTML='<div class="msg ok">Lead saved.</div>';['c_name','c_phone','c_bud'].forEach(i=>$(i).value='');$('c_cons').checked=false};
+$('c_out').onclick=e=>{const d=e.target.dataset.cd;if(d){C=C.filter(x=>x.id!=d);save();renderC()}};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));['list','match','leads','rules'].forEach(s=>$(s).hidden=s!==b.dataset.t)});
+const SEED=[
+{title:'1-bedroom, Riverside Azure',status:'off-plan',type:'apartment',area:'Riverside',beds:1,price:8000000,agent:'Listed on BuyRentKenya',src:'https://www.buyrentkenya.com/listings/1-bedroom-apartment-for-sale-riverside-3967441',ver:'2026-10-13'},
+{title:'2-bedroom serviced, Riverside Azure',status:'off-plan',type:'apartment',area:'Riverside',beds:2,price:14000000,agent:'Listed on BuyRentKenya',src:'https://www.buyrentkenya.com/listings/2-bedroom-apartment-for-sale-riverside-3967587',ver:'2026-10-13'},
+{title:'2-bedroom, Riverside Azure (pre-launch price)',status:'off-plan',type:'apartment',area:'Riverside',beds:2,price:11500000,size:98,agent:'Listed on Kenya Property Centre',src:'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/westlands/66412-2-bedroom-apartment',ver:'2026-10-13'},
+{title:'1-bedroom, Riverside Azure (ref 632-54)',status:'off-plan',type:'apartment',area:'Riverside',beds:1,price:8000000,agent:'Listed on Kenya Property Centre',src:'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/westlands/63254-1-bedroom-apartments',ver:'2026-10-13'},
+{title:'1-bedroom, Elegant Apartments, Riverside Azure',status:'off-plan',type:'apartment',area:'Riverside Drive',beds:1,price:8000000,size:64,agent:'Craiova Realtors',src:'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/lavington/62698-elegant-apartments-1-bedroom',ver:'2026-10-13'},
+{title:'3-bedroom, Riverside Azure (from price)',status:'off-plan',type:'apartment',area:'Riverside',beds:3,price:22500000,size:141,agent:'Listed on Commercial Property Kenya',src:'https://commercialpropertykenya.com/properties/riverside-azure-apartments-on-riverside-drive-nairobi/',ver:'2026-10-13'}];
+$('i_seed').onclick=()=>{$('i_txt').value=JSON.stringify(SEED);$('i_go').click()};
+$('i_go').onclick=()=>{const m=$('i_msg');let a;try{a=JSON.parse($('i_txt').value)}catch(e){m.innerHTML='<div class="msg err">That is not valid JSON. Paste the full contents of listings.json.</div>';return}
+if(!Array.isArray(a)){m.innerHTML='<div class="msg err">Expected a list of listings.</div>';return}
+let n=0,rej=0,dup=0;const S=['off-plan','ready-sale','rental'],T=['apartment','house','office','retail','warehouse','land'];
+function parseKPrice(s){if(typeof s==='number')return isNaN(s)?'':s;if(!s)return'';const str=String(s).trim();const m=str.match(/([\d,.]+)\s*(?:m(?:illion)?)\b/i);if(m){const v=parseFloat(m[1].replace(/,/g,''));if(!isNaN(v))return Math.round(v*1e6)}const k=str.match(/([\d,.]+)\s*(?:k(?:|ilo|thousand)?)\b/i);if(k){const v=parseFloat(k[1].replace(/,/g,''));if(!isNaN(v))return Math.round(v*1e3)}const d=str.replace(/[^\d]/g,'');return d?Number(d):''}
+a.forEach(x=>{if(!x||!x.title||!x.area||!x.src||!x.ver||isNaN(new Date(x.ver))){rej++;return}
+if(L.some(y=>y.src===x.src&&y.title===x.title)){dup++;return}
+L.push({id:Date.now()+n,title:String(x.title),status:S.includes(x.status)?x.status:'ready-sale',type:T.includes(x.type)?x.type:'apartment',area:String(x.area),beds:x.beds===undefined?'':x.beds,price:parseKPrice(x.price),size:x.size||'',agent:String(x.agent||''),phone:String(x.phone||''),src:String(x.src),ver:String(x.ver).slice(0,10),img:String(x.img||'')});n++});
+save();renderL();m.innerHTML=`<div class="msg ok">Imported ${n}. Rejected ${rej}. Duplicates skipped ${dup}. Open Match a client to search them.</div>`};
+load();renderL();renderC();
+fetch('/api/listings').then(r=>r.json()).then(j=>{if(j&&Array.isArray(j.listings)){const have=new Set(L.map(x=>x.src+'|'+x.title));let added=0;j.listings.forEach((x,i)=>{if(!have.has(x.src+'|'+x.title)){L.push(Object.assign({},x,{id:'a'+i}));added++}});if(added)renderL();if(j.updated)$('l_msg').innerHTML='<div class="msg ok">Auto-collected listings updated '+esc(j.updated.slice(0,16).replace('T',' '))+' UTC ('+j.listings.length+' live)</div>'}}).catch(()=>{});
+</script></body></html>

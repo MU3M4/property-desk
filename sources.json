@@ -1,0 +1,19 @@
+{
+  "contact_email": "you@example.com",
+  "delay_ms": 3000,
+  "sources": [
+    {
+      "name": "Example developer site (replace)",
+      "permission_confirmed": false,
+      "publishes_business_contact": false,
+      "status": "off-plan",
+      "type": "apartment",
+      "pages": ["https://example.com/units"],
+      "selectors": {
+        "card": ".unit", "title": ".name", "price": ".price",
+        "area": ".location", "beds": ".beds", "size": ".size",
+        "link": "a", "image": "img", "phone": ".contact"
+      }
+    }
+  ]
+}
