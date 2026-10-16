@@ -101,48 +101,73 @@ export default async function handler(req, res) {
       log.push(`skip ${src.name}: permission not confirmed`);
       continue;
     }
-    const s = src.selectors;
-    for (const page of src.pages) {
-      if (Date.now() - startTime > TIME_BUDGET_MS) {
-        log.push(`time budget reached (${Math.round((Date.now() - startTime) / 1000)}s); stopping collection early to persist data`);
-        timedOut = true;
-        break sourceLoop;
-      }
 
-      if (!(await allowed(page, ua))) {
-        log.push(`skip ${page}: robots.txt`);
-        continue;
-      }
-
-      try {
-        const r = await fetch(page, {
-          headers: { 'User-Agent': ua },
-          signal: AbortSignal.timeout(10000),
+    // Ingest verified direct units (e.g. from developer price sheets or modern SPA portals)
+    if (Array.isArray(src.units) && src.units.length > 0) {
+      for (const u of src.units) {
+        fresh.push({
+          title: u.title,
+          area: u.area || src.area || '',
+          status: u.status || src.status || 'ready-sale',
+          type: u.type || src.type || 'apartment',
+          beds: parseBeds(u.beds),
+          price: parsePrice(u.price),
+          size: parseSize(u.size),
+          agent: src.name,
+          phone: src.publishes_business_contact ? (u.phone || src.phone || '') : '',
+          src: u.src || (Array.isArray(src.pages) && src.pages[0]) || '',
+          img: u.img || '',
+          ver: today,
         });
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const $ = cheerio.load(await r.text());
-        $(s.card).each((_, el) => {
-          const c = $(el);
-          const title = c.find(s.title).first().text().trim();
-          const area = c.find(s.area).first().text().trim();
-          if (!title || !area) return;
-          const href = c.find(s.link || 'a').first().attr('href');
-          const img = c.find(s.image || 'img').first().attr('src');
-          fresh.push({
-            title, area, status: src.status, type: src.type,
-            beds: parseBeds(c.find(s.beds).first().text()),
-            price: parsePrice(c.find(s.price).first().text()),
-            size: parseSize(c.find(s.size).first().text()),
-            agent: src.name,
-            phone: src.publishes_business_contact ? c.find(s.phone).first().text().trim() : '',
-            src: href ? new URL(href, page).href : page,
-            img: img ? new URL(img, page).href : '',
-            ver: today,
+      }
+      okSources.add(src.name);
+      log.push(`ok ${src.name}: loaded ${src.units.length} verified units`);
+    }
+
+    // Crawl web pages using CSS selectors if provided
+    if (src.selectors && Array.isArray(src.pages) && src.pages.length > 0) {
+      const s = src.selectors;
+      for (const page of src.pages) {
+        if (Date.now() - startTime > TIME_BUDGET_MS) {
+          log.push(`time budget reached (${Math.round((Date.now() - startTime) / 1000)}s); stopping collection early to persist data`);
+          timedOut = true;
+          break sourceLoop;
+        }
+
+        if (!(await allowed(page, ua))) {
+          log.push(`skip ${page}: robots.txt`);
+          continue;
+        }
+
+        try {
+          const r = await fetch(page, {
+            headers: { 'User-Agent': ua },
+            signal: AbortSignal.timeout(10000),
           });
-        });
-        okSources.add(src.name);
-        log.push(`ok ${page}`);
-      } catch (e) {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          const $ = cheerio.load(await r.text());
+          $(s.card).each((_, el) => {
+            const c = $(el);
+            const title = c.find(s.title).first().text().trim();
+            const area = c.find(s.area).first().text().trim();
+            if (!title || !area) return;
+            const href = c.find(s.link || 'a').first().attr('href');
+            const img = c.find(s.image || 'img').first().attr('src');
+            fresh.push({
+              title, area, status: src.status, type: src.type,
+              beds: parseBeds(c.find(s.beds).first().text()),
+              price: parsePrice(c.find(s.price).first().text()),
+              size: parseSize(c.find(s.size).first().text()),
+              agent: src.name,
+              phone: src.publishes_business_contact ? c.find(s.phone).first().text().trim() : '',
+              src: href ? new URL(href, page).href : page,
+              img: img ? new URL(img, page).href : '',
+              ver: today,
+            });
+          });
+          okSources.add(src.name);
+          log.push(`ok ${page}`);
+        } catch (e) {
         log.push(`fail ${page}: ${e.message}`);
       }
       await sleep(cfg.delay_ms || 3000);

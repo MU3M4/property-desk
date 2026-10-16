@@ -3,23 +3,112 @@
   "delay_ms": 3000,
   "sources": [
     {
-      "name": "Example developer site (replace)",
+      "name": "Riverside Azure (JNC Brothers)",
       "permission_confirmed": true,
       "publishes_business_contact": true,
       "status": "off-plan",
       "type": "apartment",
-      "pages": ["https://example.com/units"],
-      "selectors": {
-        "card": ".unit",
-        "title": ".name",
-        "price": ".price",
-        "area": ".location",
-        "beds": ".beds",
-        "size": ".size",
-        "link": "a",
-        "image": "img",
-        "phone": ".contact"
-      }
+      "area": "Riverside Drive, Nairobi",
+      "phone": "+254 796 529997",
+      "pages": ["https://www.riversideazure.co.ke/"],
+      "units": [
+        {
+          "title": "1-Bedroom 'The Grand Panorama', Riverside Azure",
+          "area": "Riverside Drive, Nairobi",
+          "beds": 1,
+          "price": 7900000,
+          "size": 66,
+          "status": "off-plan",
+          "type": "apartment",
+          "phone": "+254 796 529997",
+          "src": "https://www.riversideazure.co.ke/units",
+          "img": "https://www.riversideazure.co.ke/assets/1%20bedroom-URO2j9P8.webp"
+        },
+        {
+          "title": "2-Bedroom 'The Urban Sanctuary', Riverside Azure",
+          "area": "Riverside Drive, Nairobi",
+          "beds": 2,
+          "price": 11000000,
+          "size": 98,
+          "status": "off-plan",
+          "type": "apartment",
+          "phone": "+254 796 529997",
+          "src": "https://www.riversideazure.co.ke/units",
+          "img": "https://www.riversideazure.co.ke/assets/2%20Bedroom-D0kilIdt.webp"
+        },
+        {
+          "title": "3-Bedroom 'The Heritage Residence', Riverside Azure",
+          "area": "Riverside Drive, Nairobi",
+          "beds": 3,
+          "price": 16750000,
+          "size": 142,
+          "status": "off-plan",
+          "type": "apartment",
+          "phone": "+254 796 529997",
+          "src": "https://www.riversideazure.co.ke/units",
+          "img": "https://www.riversideazure.co.ke/assets/3%20Bedroom-CZ1xJxe7.webp"
+        }
+      ]
+    },
+    {
+      "name": "Riara One Residency (OasisQuorra)",
+      "permission_confirmed": true,
+      "publishes_business_contact": true,
+      "status": "ready-sale",
+      "type": "apartment",
+      "area": "Riara Road, Kilimani/Lavington",
+      "phone": "+254 722 720 812",
+      "pages": ["https://sirfrancismarketingltd.co.ke/"],
+      "units": [
+        {
+          "title": "1-Bedroom Modern Apartment, Riara One Residency",
+          "area": "Riara Road, Kilimani",
+          "beds": 1,
+          "price": 7800000,
+          "size": 65,
+          "status": "ready-sale",
+          "type": "apartment",
+          "phone": "+254 722 720 812",
+          "src": "https://sirfrancismarketingltd.co.ke/",
+          "img": ""
+        },
+        {
+          "title": "2-Bedroom Master Ensuite, Riara One Residency",
+          "area": "Riara Road, Kilimani",
+          "beds": 2,
+          "price": 12000000,
+          "size": 115,
+          "status": "ready-sale",
+          "type": "apartment",
+          "phone": "+254 722 720 812",
+          "src": "https://sirfrancismarketingltd.co.ke/",
+          "img": ""
+        },
+        {
+          "title": "2-Bedroom Deluxe (Tower A), Riara One Residency",
+          "area": "Riara Road, Kilimani",
+          "beds": 2,
+          "price": 13500000,
+          "size": 120,
+          "status": "ready-sale",
+          "type": "apartment",
+          "phone": "+254 722 720 812",
+          "src": "https://sirfrancismarketingltd.co.ke/",
+          "img": ""
+        },
+        {
+          "title": "1-Bedroom Furnished Executive Rental, Riara One",
+          "area": "Riara Road, Kilimani",
+          "beds": 1,
+          "price": 150000,
+          "size": 65,
+          "status": "rental",
+          "type": "apartment",
+          "phone": "+254 722 720 812",
+          "src": "https://sirfrancismarketingltd.co.ke/",
+          "img": ""
+        }
+      ]
     }
   ]
 }

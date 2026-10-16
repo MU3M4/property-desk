@@ -201,8 +201,9 @@ ul.rules li { margin-bottom: 8px; }
       <summary style="cursor:pointer;font-weight:700;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:18px">➕ Add a verified listing</summary>
       <div style="margin-top:12px">
         <div class="row" style="margin:0 0 10px">
-          <button class="btn ghost sm" id="azure">Prefill Riverside Azure template</button>
-          <span class="meta">Sets sample project name & area. You enter verified price and source.</span>
+          <button class="btn ghost sm" id="azure">Prefill Riverside Azure</button>
+          <button class="btn ghost sm" id="riara">Prefill Riara One</button>
+          <span class="meta">Prefills project name, location, and verified developer contact.</span>
         </div>
         <div class="grid">
           <label>Title (required)<input id="l_title" placeholder="e.g. 2-bedroom, Riverside Azure"></label>
@@ -593,11 +594,23 @@ $('f_reset').onclick = () => {
 
 // Add listing
 $('azure').onclick = () => {
-  $('l_title').value = 'Riverside Azure unit';
+  $('l_title').value = '2-Bedroom Luxury, Riverside Azure';
   $('l_status').value = 'off-plan';
   $('l_type').value = 'apartment';
-  $('l_area').value = 'Riverside';
-  $('l_agent').value = 'Riverside Azure developer';
+  $('l_area').value = 'Riverside Drive, Nairobi';
+  $('l_agent').value = 'Riverside Azure (JNC Brothers)';
+  $('l_phone').value = '+254 796 529997';
+  $('l_src').value = 'https://www.riversideazure.co.ke/units';
+};
+
+$('riara').onclick = () => {
+  $('l_title').value = '2-Bedroom Master Ensuite, Riara One';
+  $('l_status').value = 'ready-sale';
+  $('l_type').value = 'apartment';
+  $('l_area').value = 'Riara Road, Kilimani';
+  $('l_agent').value = 'Riara One Residency (OasisQuorra)';
+  $('l_phone').value = '+254 722 720 812';
+  $('l_src').value = 'https://sirfrancismarketingltd.co.ke/';
 };
 
 $('l_add').onclick = () => {
@@ -1023,12 +1036,13 @@ $('wipe_all_data').onclick = () => {
 
 // IMPORT BATCH JSON & SEED DATA
 const SEED = [
-  { title: '1-bedroom, Riverside Azure', status: 'off-plan', type: 'apartment', area: 'Riverside', beds: 1, price: 8000000, agent: 'Listed on BuyRentKenya', src: 'https://www.buyrentkenya.com/listings/1-bedroom-apartment-for-sale-riverside-3967441', ver: '2026-10-13' },
-  { title: '2-bedroom serviced, Riverside Azure', status: 'off-plan', type: 'apartment', area: 'Riverside', beds: 2, price: 14000000, agent: 'Listed on BuyRentKenya', src: 'https://www.buyrentkenya.com/listings/2-bedroom-apartment-for-sale-riverside-3967587', ver: '2026-10-13' },
-  { title: '2-bedroom, Riverside Azure (pre-launch price)', status: 'off-plan', type: 'apartment', area: 'Riverside', beds: 2, price: 11500000, size: 98, agent: 'Listed on Kenya Property Centre', src: 'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/westlands/66412-2-bedroom-apartment', ver: '2026-10-13' },
-  { title: '1-bedroom, Riverside Azure (ref 632-54)', status: 'off-plan', type: 'apartment', area: 'Riverside', beds: 1, price: 8000000, agent: 'Listed on Kenya Property Centre', src: 'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/westlands/63254-1-bedroom-apartments', ver: '2026-10-13' },
-  { title: '1-bedroom, Elegant Apartments, Riverside Azure', status: 'off-plan', type: 'apartment', area: 'Riverside Drive', beds: 1, price: 8000000, size: 64, agent: 'Craiova Realtors', src: 'https://kenyapropertycentre.com/for-sale/flats-apartments/nairobi/lavington/62698-elegant-apartments-1-bedroom', ver: '2026-10-13' },
-  { title: '3-bedroom, Riverside Azure (from price)', status: 'off-plan', type: 'apartment', area: 'Riverside', beds: 3, price: 22500000, size: 141, agent: 'Listed on Commercial Property Kenya', src: 'https://commercialpropertykenya.com/properties/riverside-azure-apartments-on-riverside-drive-nairobi/', ver: '2026-10-13' }
+  { title: "1-Bedroom 'The Grand Panorama', Riverside Azure", status: 'off-plan', type: 'apartment', area: 'Riverside Drive, Nairobi', beds: 1, price: 7900000, size: 66, agent: 'Riverside Azure (JNC Brothers)', phone: '+254 796 529997', src: 'https://www.riversideazure.co.ke/units', img: 'https://www.riversideazure.co.ke/assets/1%20bedroom-URO2j9P8.webp', ver: '2026-10-16' },
+  { title: "2-Bedroom 'The Urban Sanctuary', Riverside Azure", status: 'off-plan', type: 'apartment', area: 'Riverside Drive, Nairobi', beds: 2, price: 11000000, size: 98, agent: 'Riverside Azure (JNC Brothers)', phone: '+254 796 529997', src: 'https://www.riversideazure.co.ke/units', img: 'https://www.riversideazure.co.ke/assets/2%20Bedroom-D0kilIdt.webp', ver: '2026-10-16' },
+  { title: "3-Bedroom 'The Heritage Residence', Riverside Azure", status: 'off-plan', type: 'apartment', area: 'Riverside Drive, Nairobi', beds: 3, price: 16750000, size: 142, agent: 'Riverside Azure (JNC Brothers)', phone: '+254 796 529997', src: 'https://www.riversideazure.co.ke/units', img: 'https://www.riversideazure.co.ke/assets/3%20Bedroom-CZ1xJxe7.webp', ver: '2026-10-16' },
+  { title: '1-Bedroom Modern Apartment, Riara One Residency', status: 'ready-sale', type: 'apartment', area: 'Riara Road, Kilimani', beds: 1, price: 7800000, size: 65, agent: 'Riara One Residency (OasisQuorra)', phone: '+254 722 720 812', src: 'https://sirfrancismarketingltd.co.ke/', ver: '2026-10-16' },
+  { title: '2-Bedroom Master Ensuite, Riara One Residency', status: 'ready-sale', type: 'apartment', area: 'Riara Road, Kilimani', beds: 2, price: 12000000, size: 115, agent: 'Riara One Residency (OasisQuorra)', phone: '+254 722 720 812', src: 'https://sirfrancismarketingltd.co.ke/', ver: '2026-10-16' },
+  { title: '2-Bedroom Deluxe (Tower A), Riara One Residency', status: 'ready-sale', type: 'apartment', area: 'Riara Road, Kilimani', beds: 2, price: 13500000, size: 120, agent: 'Riara One Residency (OasisQuorra)', phone: '+254 722 720 812', src: 'https://sirfrancismarketingltd.co.ke/', ver: '2026-10-16' },
+  { title: '1-Bedroom Furnished Executive Rental, Riara One', status: 'rental', type: 'apartment', area: 'Riara Road, Kilimani', beds: 1, price: 150000, size: 65, agent: 'Riara One Residency (OasisQuorra)', phone: '+254 722 720 812', src: 'https://sirfrancismarketingltd.co.ke/', ver: '2026-10-16' }
 ];
 
 $('i_seed').onclick = () => {
