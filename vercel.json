@@ -1,6 +1,18 @@
 {
-  "crons": [{ "path": "/api/collect", "schedule": "0 3 * * *" }],
+  "crons": [
+    {
+      "path": "/api/collect",
+      "schedule": "0 3 * * *"
+    }
+  ],
   "functions": {
-    "api/collect.js": { "maxDuration": 60, "includeFiles": "sources.json" }
+    "api/collect.js": {
+      "maxDuration": 60,
+      "includeFiles": "sources.json"
+    },
+    "api/whatsapp.js": {
+      "maxDuration": 30,
+      "includeFiles": "data/**"
+    }
   }
 }
