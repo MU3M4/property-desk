@@ -1,0 +1,12 @@
+{
+  "name": "Riverside Azure",
+  "address": "25 Riverside Drive, Nairobi",
+  "website": "https://www.riversideazure.co.ke",
+  "developer_phone": "+254700686666",
+  "units": ["1-bedroom", "2-bedroom", "3-bedroom"],
+  "promo": "Black November offer: book a 1 or 2-bedroom unit this November and get it fully furnished free on completion. Confirm the exact end date and terms with the developer.",
+  "payment": { "booking_fee": "KES 100,000", "deposit": "20%", "balance": "paid within the construction period through flexible payment plans" },
+  "process": ["Book a viewing and visit the show apartment", "Secure your unit with a KES 100,000 booking fee", "Pay the 20% deposit, then the balance within the construction period"],
+  "media": { "video": "ra-video.mp4", "flyers": ["ra-1.jpg", "ra-2.jpg"] },
+  "source": "Developer flyers supplied by the agent, 16 Nov 2026"
+}
